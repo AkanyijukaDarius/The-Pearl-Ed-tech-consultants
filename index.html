@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Pearl Ed-Tech Consultant Services Ltd | Refining Education</title>
-  
+
+  <!-- Tailwind + custom config -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -13,10 +14,9 @@
         extend: {
           colors: {
             pearl: { DEFAULT: '#d4af37', light: '#f5e8b0' },
-            accent: { DEFAULT: '#a855f7', dark: '#7e22ce', light: '#c084fc' }, // NativePHP-like purple
-            growth: { DEFAULT: '#15803d' }, // from your logo green
+            accent: { DEFAULT: '#a855f7', dark: '#7e22ce', light: '#c084fc' },
+            growth: { DEFAULT: '#15803d' }, // your logo green
             primary: { DEFAULT: '#0a0f1a', muted: '#111827' },
-            surface: { card: '#1e293b', border: '#334155' },
           },
           fontFamily: {
             sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -26,24 +26,30 @@
       }
     }
   </script>
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet"/>
 
+  <!-- Theme variables & fixes -->
   <style>
     [data-theme="light"] {
-      --bg: #f8fafc;
+      --bg: #f9fafb;
       --text: #111827;
-      --heading: #1e293b;
-      --card: #ffffff;
-      --border: #cbd5e1;
+      --heading: #0f172a;
+      --card-bg: #ffffff;
+      --card-border: #e5e7eb;
       --muted: #4b5563;
+      --input-bg: #f3f4f6;
     }
+
     [data-theme="dark"] {
       --bg: #0a0f1a;
       --text: #e2e8f0;
       --heading: #f1f5f9;
-      --card: #1e293b;
-      --border: #334155;
+      --card-bg: #1e293b;
+      --card-border: #334155;
       --muted: #94a3b8;
+      --input-bg: #111827;
     }
 
     body {
@@ -51,57 +57,70 @@
       color: var(--text);
     }
 
-    h1, h2, h3, h4 {
+    h1, h2, h3, h4, h5, h6 {
       color: var(--heading);
     }
 
     .card {
-      background: var(--card);
-      border-color: var(--border);
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      background: var(--card-bg);
+      border-color: var(--card-border);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
     }
 
-    p, li, .text-gray-200, .text-gray-300 {
-      color: var(--text) !important;
+    p, li, .text-muted {
+      color: var(--text);
     }
 
-    [data-theme="light"] .text-gray-200,
-    [data-theme="light"] .text-gray-300 {
-      color: var(--muted) !important;
+    input, textarea {
+      background: var(--input-bg);
+      color: var(--text);
+      border-color: var(--card-border);
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--muted);
     }
 
     .text-accent { color: #a855f7 !important; }
+
+    section { padding-top: 6rem; padding-bottom: 6rem; }
   </style>
 </head>
 <body class="min-h-screen transition-colors duration-300">
 
-  <!-- NAV -->
-  <nav class="fixed top-0 w-full z-50 border-b border-gray-800/50 bg-primary/80 backdrop-blur-md text-white">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3">
-        <img src="logo.jpeg" alt="The Pearl Ed-Tech Logo" class="h-20  w-auto rounded-full">
-        <span class="text-xl font-semibold tracking-tight"> The Pearl Ed-Tech Consultants</span>
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 w-full z-50 border-b border-gray-800/40 bg-black/70 backdrop-blur-xl text-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3.5 group">
+        <div class="relative">
+          <img src="logo.jpeg" alt="The Pearl Ed-Tech Logo" class="h-11 w-auto rounded-full transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-growth/30 to-pearl/20 opacity-0 group-hover:opacity-70 blur-md transition-opacity duration-300"></div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-semibold tracking-tight leading-none">The Pearl</span>
+          <span class="text-xs font-medium text-gray-400 leading-none mt-0.5">Ed-Tech Consultants</span>
+        </div>
       </a>
 
       <div class="hidden md:flex items-center gap-10 text-sm font-medium">
-        <a href="#services" class="hover:text-accent transition">Services</a>
-        <a href="#objectives" class="hover:text-accent transition">Objectives</a>
-        <a href="#app" class="hover:text-accent transition">Our App</a>
-        <a href="#contact" class="hover:text-accent transition">Contact</a>
+        <a href="#services" class="hover:text-accent transition-colors duration-200">Services</a>
+        <a href="#objectives" class="hover:text-accent transition-colors duration-200">Objectives</a>
+        <a href="#app" class="hover:text-accent transition-colors duration-200">Our App</a>
+        <a href="#contact" class="hover:text-accent transition-colors duration-200">Contact</a>
       </div>
 
-      <div class="flex items-center gap-5">
+      <div class="flex items-center gap-6">
         <button id="theme-toggle" class="text-xl focus:outline-none transition-transform hover:scale-110" aria-label="Toggle theme">🌙</button>
         <button id="mobile-menu-btn" class="md:hidden text-3xl focus:outline-none" aria-label="Open menu">☰</button>
       </div>
     </div>
 
-    <div id="mobile-menu" class="hidden md:hidden bg-primary/95 border-t border-gray-800 backdrop-blur-md">
-      <div class="px-6 py-8 flex flex-col gap-6 text-center text-lg">
-        <a href="#services" class="hover:text-accent">Services</a>
-        <a href="#objectives" class="hover:text-accent">Objectives</a>
-        <a href="#app" class="hover:text-accent">Our App</a>
-        <a href="#contact" class="hover:text-accent">Contact</a>
+    <div id="mobile-menu" class="hidden md:hidden bg-black/95 border-t border-gray-800 backdrop-blur-lg">
+      <div class="px-6 py-10 flex flex-col gap-8 text-center text-lg font-medium">
+        <a href="#services" class="hover:text-accent transition-colors">Services</a>
+        <a href="#objectives" class="hover:text-accent transition-colors">Objectives</a>
+        <a href="#app" class="hover:text-accent transition-colors">Our App</a>
+        <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
       </div>
     </div>
   </nav>
@@ -109,16 +128,17 @@
   <!-- HERO -->
   <section class="pt-40 pb-32 text-center">
     <div class="max-w-5xl mx-auto px-6">
-      <h1 class="text-5xl md:text-7xl font-extrabold font-display tracking-tight leading-tight mb-8">
+      <h1 class="text-6xl md:text-8xl font-extrabold font-display tracking-tight leading-none mb-10">
         Refining Education<br class="hidden md:block"/>
-        <span class="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Through Data & Innovation</span>
+        <span class="bg-gradient-to-r from-growth via-accent to-pearl bg-clip-text text-transparent">Through Data & Innovation</span>
       </h1>
-      <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed">
-        Kampala-based Ed-Tech consultancy — CBC tools, teacher training, data-driven insights. Rooted in Makerere research.
+      <p class="text-2xl md:text-3xl text-muted max-w-4xl mx-auto mb-14 leading-relaxed font-light">
+        Kampala-based Ed-Tech consultancy — CBC tools, teacher training, data-driven insights.<br class="hidden md:block"/>
+        Rooted in Makerere research.
       </p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center">
         <a href="#contact" class="px-10 py-5 bg-accent hover:bg-purple-700 text-white rounded-xl font-semibold text-lg transition shadow-lg shadow-accent/30">Start a Pilot</a>
-        <a href="https://wa.me/256761418616?text=Hello%20from%20the%20Pearl%20team" class="px-10 py-5 border border-gray-600 hover:border-accent rounded-xl font-semibold transition flex items-center justify-center gap-3">
+        <a href="https://wa.me/256761418616?text=Hello%20the%20Pearl%20team" class="px-10 py-5 border border-gray-600 hover:border-accent rounded-xl font-semibold transition flex items-center justify-center gap-3 dark:text-white">
           Chat on WhatsApp
         </a>
       </div>
@@ -133,17 +153,17 @@
         <div class="card p-8 rounded-2xl border hover:border-accent/50 transition-all duration-300 group">
           <div class="text-6xl mb-6 text-accent opacity-80 group-hover:opacity-100 transition">📚</div>
           <h3 class="text-2xl font-semibold mb-4">CBC Teacher Training</h3>
-          <p class="text-[var(--text)]">Workshops on competency-based methods, STEM, learner-centred pedagogy.</p>
+          <p class="text-muted">Workshops on competency-based methods, STEM, learner-centred pedagogy.</p>
         </div>
         <div class="card p-8 rounded-2xl border hover:border-accent/50 transition-all duration-300 group">
           <div class="text-6xl mb-6 text-accent opacity-80 group-hover:opacity-100 transition">📱</div>
           <h3 class="text-2xl font-semibold mb-4">Mobile Ed-Tech Tools</h3>
-          <p class="text-[var(--text)]">Offline CBC tracker — scores, reports, analytics. Vue + Pinia powered.</p>
+          <p class="text-muted">Offline CBC tracker — scores, reports, analytics. Vue + Pinia powered.</p>
         </div>
         <div class="card p-8 rounded-2xl border hover:border-accent/50 transition-all duration-300 group">
           <div class="text-6xl mb-6 text-accent opacity-80 group-hover:opacity-100 transition">🔍</div>
           <h3 class="text-2xl font-semibold mb-4">Research & Analytics</h3>
-          <p class="text-[var(--text)]">Mathematical modeling, school audits, evidence-based improvements.</p>
+          <p class="text-muted">Mathematical modeling, school audits, evidence-based improvements.</p>
         </div>
       </div>
     </div>
@@ -156,30 +176,33 @@
       <div class="space-y-12">
         <div class="card p-10 rounded-2xl border hover:border-accent/40 transition-all">
           <h3 class="text-3xl font-bold mb-6 text-accent">I. Core Educational Consultancy & Research</h3>
-          <ul class="space-y-4 text-lg list-disc pl-6 text-[var(--text)]">
+          <ul class="space-y-4 text-lg list-disc pl-6">
             <li>To provide expert professional consultancy services to educational institutions, government bodies, and non-governmental organizations regarding curriculum design, implementation, and evaluation.</li>
             <li>To conduct academic and field research into pedagogical effectiveness, specifically focusing on the Lower Secondary School Curriculum in Uganda.</li>
             <li>To organize and facilitate teacher training workshops, professional development seminars, and instructional leadership programs.</li>
           </ul>
         </div>
+
         <div class="card p-10 rounded-2xl border hover:border-accent/40 transition-all">
           <h3 class="text-3xl font-bold mb-6 text-accent">II. Technology & Software Development (Ed-Tech)</h3>
-          <ul class="space-y-4 text-lg list-disc pl-6 text-[var(--text)]">
+          <ul class="space-y-4 text-lg list-disc pl-6">
             <li>To design, develop, and maintain mobile applications, web platforms, and digital management systems for school administration and classroom assessment.</li>
             <li>To provide data analytics and statistical modeling services to measure student learning outcomes and institutional performance.</li>
             <li>To offer ICT integration support and digital literacy training for educators and students.</li>
           </ul>
         </div>
+
         <div class="card p-10 rounded-2xl border hover:border-accent/40 transition-all">
           <h3 class="text-3xl font-bold mb-6 text-accent">III. STEM & Specialized Services</h3>
-          <ul class="space-y-4 text-lg list-disc pl-6 text-[var(--text)]">
+          <ul class="space-y-4 text-lg list-disc pl-6">
             <li>To develop and distribute high-quality teaching aids, digital content, and laboratory manuals for Mathematics and Chemistry.</li>
             <li>To provide consultancy on environmental education and scientific literacy, including research on sustainable development.</li>
           </ul>
         </div>
+
         <div class="card p-10 rounded-2xl border hover:border-accent/40 transition-all">
           <h3 class="text-3xl font-bold mb-6 text-accent">IV. General Business Power</h3>
-          <ul class="space-y-4 text-lg list-disc pl-6 text-[var(--text)]">
+          <ul class="space-y-4 text-lg list-disc pl-6">
             <li>To enter into partnerships, joint ventures, or contracts with any person or company for the purpose of promoting the company’s objects.</li>
             <li>To do all such other things as may be deemed incidental or conducive to the attainment of the above objects.</li>
           </ul>
@@ -192,10 +215,10 @@
   <section id="app" class="py-24 border-t border-gray-800">
     <div class="max-w-5xl mx-auto px-6 text-center">
       <h2 class="text-5xl font-bold font-display mb-8">CBC Assessment Tracker App</h2>
-      <p class="text-xl text-[var(--muted)] mb-12 max-w-3xl mx-auto">Offline-capable • Real-time scoring • Automatic reports • Pilot launching soon</p>
+      <p class="text-xl text-muted mb-12 max-w-3xl mx-auto">Offline-capable • Real-time scoring • Automatic reports • Pilot launching soon</p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center">
         <a href="#contact" class="px-12 py-6 bg-accent hover:bg-purple-700 text-white rounded-xl font-bold text-xl transition shadow-xl shadow-accent/30">Request Early Access</a>
-        <a href="https://wa.me/256761418616?text=Interested%20in%20CBC%20Tracker" class="px-12 py-6 border border-gray-600 hover:border-accent text-gray-900 dark:text-white rounded-xl font-bold text-xl transition flex items-center justify-center gap-3">
+        <a href="https://wa.me/256761418616?text=Interested%20in%20CBC%20Tracker" class="px-12 py-6 border border-gray-600 hover:border-accent dark:text-white rounded-xl font-bold text-xl transition flex items-center justify-center gap-3">
           WhatsApp Chat
         </a>
       </div>
@@ -206,25 +229,26 @@
   <section id="contact" class="py-24 border-t border-gray-800">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h2 class="text-4xl font-bold font-display mb-6">Ready to Partner?</h2>
-      <p class="text-xl text-[var(--muted)] mb-12">Free consultation • Pilot discussion • Custom quote</p>
+      <p class="text-xl text-muted mb-12">Free consultation • Pilot discussion • Custom quote</p>
 
-      <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="max-w-lg mx-auto space-y-6">
-        <input name="name" placeholder="Your Name" required class="w-full p-5 rounded-xl bg-gray-900 border border-gray-700 text-[var(--text)] focus:border-accent focus:ring-1 focus:ring-accent outline-none"/>
-        <input name="email" type="email" placeholder="Your Email" required class="w-full p-5 rounded-xl bg-gray-900 border border-gray-700 text-[var(--text)] focus:border-accent focus:ring-1 focus:ring-accent outline-none"/>
-        <input name="school" placeholder="School / Organization (optional)" class="w-full p-5 rounded-xl bg-gray-900 border border-gray-700 text-[var(--text)] focus:border-accent focus:ring-1 focus:ring-accent outline-none"/>
-        <textarea name="message" rows="5" placeholder="Your message..." required class="w-full p-5 rounded-xl bg-gray-900 border border-gray-700 text-[var(--text)] focus:border-accent focus:ring-1 focus:ring-accent outline-none"></textarea>
+      <form action="https://formspree.io/f/xvzwywej" method="POST" class="max-w-lg mx-auto space-y-6">
+        <input name="name" placeholder="Your Name" required class="w-full p-5 rounded-xl bg-[var(--input-bg)] border border-[var(--card-border)] text-[var(--text)] focus:border-accent focus:ring-1 focus:ring-accent outline-none"/>
+        <input name="email" type="email" placeholder="Your Email" required class="w-full p-5 rounded-xl bg-[var(--input-bg)] border border-[var(--card-border)] text-[var(--text)] focus:border-accent focus:ring-1 focus:ring-accent outline-none"/>
+        <input type="hidden" name="_next" value="thank-you.html">
+        <input name="school" placeholder="School / Organization (optional)" class="w-full p-5 rounded-xl bg-[var(--input-bg)] border border-[var(--card-border)] text-[var(--text)] focus:border-accent focus:ring-1 focus:ring-accent outline-none"/>
+        <textarea name="message" rows="5" placeholder="Your message..." required class="w-full p-5 rounded-xl bg-[var(--input-bg)] border border-[var(--card-border)] text-[var(--text)] focus:border-accent focus:ring-1 focus:ring-accent outline-none"></textarea>
         <button type="submit" class="w-full py-5 bg-accent hover:bg-purple-700 text-white rounded-xl font-bold text-lg transition shadow-lg">Send Message</button>
       </form>
 
-      <p class="mt-10 text-lg text-[var(--muted)]">Quick chat?</p>
-      <a  href="https://wa.me/256761418616?text=Hello%20from%20the%20Pearl%20team" class="mt-4 inline-block px-12 py-5 bg-green-600 hover:bg-green-500 text-white rounded-xl font-bold text-lg transition shadow-lg">
+      <p class="mt-10 text-lg text-muted">Quick chat?</p>
+      <a href="https://wa.me/256761418616?text=Hello%20the%20Pearl%20team" class="mt-4 inline-block px-12 py-5 bg-green-600 hover:bg-green-500 text-white rounded-xl font-bold text-lg transition shadow-lg">
         Open WhatsApp →
       </a>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-12 bg-primary border-t border-gray-800 text-center text-gray-400 text-sm">
+  <footer class="py-12 bg-black border-t border-gray-800 text-center text-gray-400 text-sm">
     © 2026 The Pearl Ed-Tech Consultant Services Ltd • Kampala, Uganda<br/>
     Private Limited Company
   </footer>
@@ -236,18 +260,18 @@
       document.getElementById('mobile-menu').classList.toggle('hidden');
     });
 
-    // Theme toggle
+    // Theme toggle (persistent)
     const toggleBtn = document.getElementById('theme-toggle');
     const html = document.documentElement;
-    let currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    html.setAttribute('data-theme', currentTheme);
-    toggleBtn.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+    let theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    html.setAttribute('data-theme', theme);
+    toggleBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
 
     toggleBtn.addEventListener('click', () => {
-      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', currentTheme);
-      toggleBtn.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
-      localStorage.setItem('theme', currentTheme);
+      theme = theme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', theme);
+      toggleBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
+      localStorage.setItem('theme', theme);
     });
   </script>
 
